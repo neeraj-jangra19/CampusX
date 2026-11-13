@@ -1,0 +1,2480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard | Campus X</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background: #f6f7fb;
+            color: #111827;
+        }
+
+        /* =================================================
+           NAVBAR
+        ================================================= */
+
+        .navbar {
+            height: 72px;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #e8eaf0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 32px;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1.3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #6d5dfc,
+                    #9b59ff,
+                    #ff4f9a
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .admin-name {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .admin-badge {
+            padding: 7px 12px;
+
+            border-radius: 50px;
+
+            background: #f0edff;
+
+            color: #635bdb;
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .logout-btn {
+            border: 1px solid #e5e7eb;
+
+            background: #ffffff;
+
+            color: #374151;
+
+            padding: 9px 14px;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #f9fafb;
+        }
+
+        /* =================================================
+           MAIN
+        ================================================= */
+
+        .container {
+            width: 100%;
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            padding: 35px 24px 60px;
+        }
+
+        .page-header {
+            margin-bottom: 28px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            margin-bottom: 6px;
+        }
+
+        .page-header p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* =================================================
+           STAT CARDS
+        ================================================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+
+            border: 1px solid #e8eaf0;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(15, 23, 42, 0.04);
+        }
+
+        .stat-label {
+            font-size: 12px;
+
+            color: #6b7280;
+
+            margin-bottom: 9px;
+        }
+
+        .stat-number {
+            font-size: 30px;
+
+            font-weight: 800;
+
+            color: #111827;
+        }
+
+        .stat-description {
+            margin-top: 6px;
+
+            font-size: 11px;
+
+            color: #9ca3af;
+        }
+
+        /* =================================================
+           TOOLBAR
+        ================================================= */
+
+        .toolbar {
+            background: #ffffff;
+
+            border: 1px solid #e8eaf0;
+
+            border-radius: 16px;
+
+            padding: 15px 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 18px;
+        }
+
+        .filters {
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            border: 1px solid #e5e7eb;
+
+            background: #ffffff;
+
+            color: #6b7280;
+
+            padding: 9px 15px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .filter-btn.active {
+            background: #6d5dfc;
+
+            color: #ffffff;
+
+            border-color: #6d5dfc;
+        }
+
+        .refresh-btn {
+            border: 1px solid #e5e7eb;
+
+            background: #ffffff;
+
+            color: #374151;
+
+            padding: 9px 15px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .refresh-btn:hover {
+            background: #f9fafb;
+        }
+
+        /* =================================================
+           TABLE
+        ================================================= */
+
+        .table-card {
+            background: #ffffff;
+
+            border: 1px solid #e8eaf0;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 20px
+                rgba(15, 23, 42, 0.04);
+        }
+
+        .table-wrapper {
+            width: 100%;
+
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 850px;
+        }
+
+        thead {
+            background: #f9fafb;
+        }
+
+        th {
+            padding: 15px 18px;
+
+            text-align: left;
+
+            font-size: 11px;
+
+            color: #6b7280;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+
+            border-bottom: 1px solid #edf0f3;
+        }
+
+        td {
+            padding: 17px 18px;
+
+            border-bottom: 1px solid #f0f1f4;
+
+            font-size: 13px;
+
+            vertical-align: middle;
+        }
+
+        tbody tr:hover {
+            background: #fafaff;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .student-name {
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .student-email {
+            color: #6b7280;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .status {
+            display: inline-flex;
+
+            padding: 6px 10px;
+
+            border-radius: 50px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+        }
+
+        .status.pending {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .status.approved {
+            background: #ecfdf5;
+            color: #047857;
+        }
+
+        .status.rejected {
+            background: #fff1f2;
+            color: #be123c;
+        }
+
+        .review-btn {
+            border: none;
+
+            background: #f0edff;
+
+            color: #635bdb;
+
+            padding: 8px 12px;
+
+            border-radius: 9px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .review-btn:hover {
+            background: #e5e0ff;
+        }
+
+        /* =================================================
+           EMPTY STATE
+        ================================================= */
+
+        .empty-state {
+            text-align: center;
+
+            padding: 60px 20px;
+
+            display: none;
+        }
+
+        .empty-icon {
+            font-size: 42px;
+
+            margin-bottom: 12px;
+        }
+
+        .empty-state h3 {
+            font-size: 17px;
+
+            margin-bottom: 5px;
+        }
+
+        .empty-state p {
+            font-size: 13px;
+
+            color: #9ca3af;
+        }
+
+        /* =================================================
+           LOADING
+        ================================================= */
+
+        .loading {
+            text-align: center;
+
+            padding: 50px;
+
+            color: #6b7280;
+
+            font-size: 13px;
+        }
+
+        .spinner {
+            width: 30px;
+            height: 30px;
+
+            border: 3px solid #e5e7eb;
+
+            border-top-color: #6d5dfc;
+
+            border-radius: 50%;
+
+            animation:
+                spin 0.8s linear infinite;
+
+            margin: 0 auto 12px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* =================================================
+           MODAL
+        ================================================= */
+
+        .modal-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(15, 23, 42, 0.55);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 500;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            width: 100%;
+
+            max-width: 720px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: #ffffff;
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 25px 80px
+                rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            margin-bottom: 22px;
+        }
+
+        .modal-header h2 {
+            font-size: 22px;
+
+            margin-bottom: 5px;
+        }
+
+        .modal-header p {
+            font-size: 12px;
+
+            color: #6b7280;
+        }
+
+        .close-btn {
+            width: 34px;
+            height: 34px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #f3f4f6;
+
+            color: #6b7280;
+
+            cursor: pointer;
+
+            font-size: 18px;
+        }
+
+        .close-btn:hover {
+            background: #e5e7eb;
+        }
+
+        .application-info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: #f9fafb;
+
+            border-radius: 12px;
+
+            padding: 13px;
+        }
+
+        .info-label {
+            display: block;
+
+            font-size: 10px;
+
+            color: #9ca3af;
+
+            text-transform: uppercase;
+
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #374151;
+        }
+
+        .document-title {
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+        }
+
+        .document-preview {
+            width: 100%;
+
+            min-height: 260px;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 14px;
+
+            background: #f9fafb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            margin-bottom: 20px;
+        }
+
+        .document-preview img {
+            display: block;
+
+            width: 100%;
+
+            max-height: 430px;
+
+            object-fit: contain;
+        }
+
+        .document-loading {
+            color: #9ca3af;
+
+            font-size: 12px;
+        }
+
+        .rejection-section {
+            margin-bottom: 20px;
+
+            display: none;
+        }
+
+        .rejection-section.show {
+            display: block;
+        }
+
+        .rejection-section label {
+            display: block;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+        textarea {
+            width: 100%;
+
+            min-height: 95px;
+
+            resize: vertical;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 12px;
+
+            padding: 12px;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #8b7cf6;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(124, 107, 240, 0.08);
+        }
+
+        .modal-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+        }
+
+        .modal-btn {
+            border: none;
+
+            padding: 11px 18px;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .cancel-btn {
+            background: #f3f4f6;
+
+            color: #4b5563;
+        }
+
+        .approve-btn {
+            background: #059669;
+
+            color: #ffffff;
+        }
+
+        .reject-btn {
+            background: #e11d48;
+
+            color: #ffffff;
+        }
+
+        .modal-btn:disabled {
+            opacity: 0.5;
+
+            cursor: not-allowed;
+        }
+
+        /* =================================================
+           TOAST
+        ================================================= */
+
+        .toast {
+            position: fixed;
+
+            right: 24px;
+            bottom: 24px;
+
+            max-width: 350px;
+
+            padding: 13px 17px;
+
+            background: #111827;
+
+            color: #ffffff;
+
+            border-radius: 12px;
+
+            font-size: 12px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(0, 0, 0, 0.2);
+
+            transform:
+                translateY(20px);
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                0.25s ease;
+
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform:
+                translateY(0);
+
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: #047857;
+        }
+
+        .toast.error {
+            background: #be123c;
+        }
+
+        /* =================================================
+           RESPONSIVE
+        ================================================= */
+
+        @media (max-width: 900px) {
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .admin-name {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding:
+                    25px 14px 45px;
+            }
+
+            .brand {
+                font-size: 24px;
+            }
+
+            .admin-badge {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns:
+                    1fr 1fr;
+
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .stat-number {
+                font-size: 24px;
+            }
+
+            .toolbar {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            .application-info {
+                grid-template-columns: 1fr;
+            }
+
+            .modal {
+                padding: 20px;
+            }
+
+            .modal-actions {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <nav class="navbar">
+
+        <div class="brand">
+            Campus X
+        </div>
+
+        <div class="nav-right">
+
+            <span
+                class="admin-name"
+                id="adminName"
+            >
+                Admin
+            </span>
+
+            <span class="admin-badge">
+                ADMIN
+            </span>
+
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="container">
+
+        <div class="page-header">
+
+            <h1>
+                KYC Verification
+            </h1>
+
+            <p>
+                Review and manage student verification requests.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Total Users
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="totalUsers"
+                >
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Registered Campus X users
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Pending
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="pendingCount"
+                >
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Waiting for review
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Approved
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="approvedCount"
+                >
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Verified students
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Rejected
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="rejectedCount"
+                >
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Requires resubmission
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TOOLBAR
+        ================================================== -->
+
+        <section class="toolbar">
+
+            <div class="filters">
+
+                <button
+                    class="filter-btn active"
+                    data-filter="all"
+                >
+                    All
+                </button>
+
+                <button
+                    class="filter-btn"
+                    data-filter="pending"
+                >
+                    Pending
+                </button>
+
+                <button
+                    class="filter-btn"
+                    data-filter="approved"
+                >
+                    Approved
+                </button>
+
+                <button
+                    class="filter-btn"
+                    data-filter="rejected"
+                >
+                    Rejected
+                </button>
+
+            </div>
+
+
+            <button
+                class="refresh-btn"
+                id="refreshBtn"
+            >
+                ↻ Refresh
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             APPLICATION TABLE
+        ================================================== -->
+
+        <section class="table-card">
+
+            <div
+                class="loading"
+                id="loading"
+            >
+
+                <div class="spinner"></div>
+
+                Loading KYC applications...
+
+            </div>
+
+
+            <div
+                class="table-wrapper"
+                id="tableWrapper"
+                style="display:none;"
+            >
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Student
+                            </th>
+
+                            <th>
+                                Document
+                            </th>
+
+                            <th>
+                                Submitted
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody
+                        id="applicationsBody"
+                    ></tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                class="empty-state"
+                id="emptyState"
+            >
+
+                <div class="empty-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    No applications found
+                </h3>
+
+                <p>
+                    There are no KYC applications for this filter.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         REVIEW MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalOverlay"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2>
+                        Review KYC
+                    </h2>
+
+                    <p>
+                        Verify the student's college ID card.
+                    </p>
+
+                </div>
+
+                <button
+                    class="close-btn"
+                    id="closeModal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                class="application-info"
+                id="applicationInfo"
+            ></div>
+
+
+            <div class="document-title">
+                College ID Card
+            </div>
+
+
+            <div
+                class="document-preview"
+                id="documentPreview"
+            >
+
+                <div class="document-loading">
+                    Loading document...
+                </div>
+
+            </div>
+
+
+            <div
+                class="rejection-section"
+                id="rejectionSection"
+            >
+
+                <label for="rejectionReason">
+                    Reason for rejection
+                </label>
+
+                <textarea
+                    id="rejectionReason"
+                    placeholder="Explain why the KYC was rejected..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="modal-btn cancel-btn"
+                    id="cancelBtn"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="modal-btn reject-btn"
+                    id="rejectBtn"
+                >
+                    Reject
+                </button>
+
+                <button
+                    class="modal-btn approve-btn"
+                    id="approveBtn"
+                >
+                    Approve
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div
+        class="toast"
+        id="toast"
+    ></div>
+
+
+    <script src="api.js"></script>
+<script>
+
+        // ====================================================
+        // CONFIGURATION
+        // ====================================================
+
+        const API_URL = window.cx.API;
+        // Send the login cookie with every request and handle expired sessions.
+        const __fetch = window.fetch.bind(window);
+        window.fetch = function (url, options) {
+            options = Object.assign({ credentials: "include" }, options || {});
+            return __fetch(url, options).then(function (res) {
+                if (res.status === 401 && String(url).indexOf("/api/admin/") !== -1 && !String(url).endsWith("/api/admin/login")) {
+                    ["campusx_admin_id", "campusx_admin_name", "campusx_admin_email", "campusx_admin_logged_in"]
+                        .forEach(function (k) { sessionStorage.removeItem(k); });
+                    window.location.replace("admin_login.html");
+                }
+                return res;
+            });
+        };
+
+
+
+        // ====================================================
+        // ADMIN AUTHENTICATION
+        // ====================================================
+
+        const adminLoggedIn =
+            sessionStorage.getItem(
+                "campusx_admin_logged_in"
+            );
+
+        const adminId =
+            sessionStorage.getItem(
+                "campusx_admin_id"
+            );
+
+
+        if (
+            adminLoggedIn !== "true" ||
+            !adminId
+        ) {
+
+            window.location.replace(
+                "admin_login.html"
+            );
+
+        }
+
+
+        // ====================================================
+        // ELEMENTS
+        // ====================================================
+
+        const adminName =
+            document.getElementById(
+                "adminName"
+            );
+
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+        const loading =
+            document.getElementById(
+                "loading"
+            );
+
+        const tableWrapper =
+            document.getElementById(
+                "tableWrapper"
+            );
+
+        const applicationsBody =
+            document.getElementById(
+                "applicationsBody"
+            );
+
+        const emptyState =
+            document.getElementById(
+                "emptyState"
+            );
+
+        const refreshBtn =
+            document.getElementById(
+                "refreshBtn"
+            );
+
+        const totalUsers =
+            document.getElementById(
+                "totalUsers"
+            );
+
+        const pendingCount =
+            document.getElementById(
+                "pendingCount"
+            );
+
+        const approvedCount =
+            document.getElementById(
+                "approvedCount"
+            );
+
+        const rejectedCount =
+            document.getElementById(
+                "rejectedCount"
+            );
+
+        const modalOverlay =
+            document.getElementById(
+                "modalOverlay"
+            );
+
+        const closeModal =
+            document.getElementById(
+                "closeModal"
+            );
+
+        const cancelBtn =
+            document.getElementById(
+                "cancelBtn"
+            );
+
+        const approveBtn =
+            document.getElementById(
+                "approveBtn"
+            );
+
+        const rejectBtn =
+            document.getElementById(
+                "rejectBtn"
+            );
+
+        const rejectionSection =
+            document.getElementById(
+                "rejectionSection"
+            );
+
+        const rejectionReason =
+            document.getElementById(
+                "rejectionReason"
+            );
+
+        const applicationInfo =
+            document.getElementById(
+                "applicationInfo"
+            );
+
+        const documentPreview =
+            document.getElementById(
+                "documentPreview"
+            );
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+
+        // ====================================================
+        // STATE
+        // ====================================================
+
+        let applications = [];
+
+        let currentFilter = "all";
+
+        let selectedApplication = null;
+
+
+        // ====================================================
+        // ADMIN NAME
+        // ====================================================
+
+        const storedAdminName =
+            sessionStorage.getItem(
+                "campusx_admin_name"
+            );
+
+
+        if (storedAdminName) {
+
+            adminName.textContent =
+                storedAdminName;
+
+        }
+
+
+        // ====================================================
+        // TOAST
+        // ====================================================
+
+        function showToast(
+            text,
+            type = "success"
+        ) {
+
+            toast.textContent =
+                text;
+
+            toast.className =
+                `toast ${type} show`;
+
+
+            setTimeout(
+                () => {
+
+                    toast.className =
+                        "toast";
+
+                },
+                3000
+            );
+        }
+
+
+        // ====================================================
+        // LOAD STATISTICS
+        // ====================================================
+
+        async function loadStats() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_URL}/api/admin/stats`
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    response.ok &&
+                    data.success
+                ) {
+
+                    totalUsers.textContent =
+                        data.stats.total_users;
+
+                    pendingCount.textContent =
+                        data.stats.pending;
+
+                    approvedCount.textContent =
+                        data.stats.approved;
+
+                    rejectedCount.textContent =
+                        data.stats.rejected;
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Stats error:",
+                    error
+                );
+            }
+        }
+
+
+        // ====================================================
+        // LOAD APPLICATIONS
+        // ====================================================
+
+        async function loadApplications() {
+
+            loading.style.display =
+                "block";
+
+            tableWrapper.style.display =
+                "none";
+
+            emptyState.style.display =
+                "none";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_URL}/api/admin/kyc`
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to load applications."
+                    );
+                }
+
+
+                applications =
+                    data.applications || [];
+
+
+                renderApplications();
+
+                await loadStats();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Applications error:",
+                    error
+                );
+
+
+                loading.style.display =
+                    "none";
+
+                emptyState.style.display =
+                    "block";
+
+                emptyState.innerHTML = `
+
+                    <div class="empty-icon">
+                        ⚠
+                    </div>
+
+                    <h3>
+                        Unable to load applications
+                    </h3>
+
+                    <p>
+                        ${escapeHtml(error.message)}
+                    </p>
+
+                `;
+            }
+        }
+
+
+        // ====================================================
+        // RENDER APPLICATIONS
+        // ====================================================
+
+        function renderApplications() {
+
+            loading.style.display =
+                "none";
+
+
+            const filtered =
+                currentFilter === "all"
+                    ? applications
+                    : applications.filter(
+                        application =>
+                            application.status ===
+                            currentFilter
+                    );
+
+
+            applicationsBody.innerHTML =
+                "";
+
+
+            if (
+                filtered.length === 0
+            ) {
+
+                tableWrapper.style.display =
+                    "none";
+
+                emptyState.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            emptyState.style.display =
+                "none";
+
+            tableWrapper.style.display =
+                "block";
+
+
+            filtered.forEach(
+                application => {
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    const status =
+                        application.status ||
+                        "pending";
+
+
+                    const submitted =
+                        formatDate(
+                            application.submitted_at
+                        );
+
+
+                    row.innerHTML = `
+
+                        <td>
+
+                            <div class="student-name">
+                                ${escapeHtml(
+                                    application.name ||
+                                    "Unknown"
+                                )}
+                            </div>
+
+                            <div class="student-email">
+                                ${escapeHtml(
+                                    application.email ||
+                                    ""
+                                )}
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            ${escapeHtml(
+                                application.file_name ||
+                                "ID Card"
+                            )}
+                        </td>
+
+
+                        <td>
+                            ${submitted}
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="status ${status}"
+                            >
+                                ${status}
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="review-btn"
+                                data-id="${application.kyc_id}"
+                            >
+                                Review
+                            </button>
+
+                        </td>
+
+                    `;
+
+
+                    applicationsBody.appendChild(
+                        row
+                    );
+                }
+            );
+
+
+            document
+                .querySelectorAll(
+                    ".review-btn"
+                )
+                .forEach(
+                    button => {
+
+                        button.addEventListener(
+                            "click",
+                            () => {
+
+                                const id =
+                                    Number(
+                                        button.dataset.id
+                                    );
+
+
+                                const application =
+                                    applications.find(
+                                        item =>
+                                            Number(
+                                                item.kyc_id
+                                            ) === id
+                                    );
+
+
+                                if (application) {
+
+                                    openReviewModal(
+                                        application
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+        }
+
+
+        // ====================================================
+        // OPEN REVIEW MODAL
+        // ====================================================
+
+        function openReviewModal(
+            application
+        ) {
+
+            selectedApplication =
+                application;
+
+
+            rejectionReason.value =
+                "";
+
+            rejectionSection.classList.remove(
+                "show"
+            );
+
+
+            applicationInfo.innerHTML = `
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        Student
+                    </span>
+
+                    <span class="info-value">
+                        ${escapeHtml(
+                            application.name ||
+                            "Unknown"
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        Email
+                    </span>
+
+                    <span class="info-value">
+                        ${escapeHtml(
+                            application.email ||
+                            "-"
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        User ID
+                    </span>
+
+                    <span class="info-value">
+                        ${escapeHtml(
+                            String(
+                                application.user_id ||
+                                "-"
+                            )
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        Status
+                    </span>
+
+                    <span class="info-value">
+                        ${escapeHtml(
+                            application.status ||
+                            "pending"
+                        )}
+                    </span>
+
+                </div>
+
+            `;
+
+
+            documentPreview.innerHTML = `
+
+                <div class="document-loading">
+                    Loading document...
+                </div>
+
+            `;
+
+
+            modalOverlay.classList.add(
+                "show"
+            );
+
+
+            const documentUrl =
+                `${API_URL}/api/admin/kyc/document/${application.kyc_id}`;
+
+
+            const image =
+                document.createElement(
+                    "img"
+                );
+
+
+            image.alt =
+                "Student college ID card";
+
+
+            image.onload =
+                function () {
+
+                    documentPreview.innerHTML =
+                        "";
+
+                    documentPreview.appendChild(
+                        image
+                    );
+
+                };
+
+
+            image.onerror =
+                function () {
+
+                    documentPreview.innerHTML = `
+
+                        <div class="document-loading">
+                            Unable to load ID card.
+                        </div>
+
+                    `;
+
+                };
+
+
+            if (/\.pdf$/i.test(application.file_name || "")) {
+                documentPreview.innerHTML = '<div class="document-loading"><a href="' + documentUrl + '" target="_blank" rel="noopener">Open uploaded PDF in a new tab</a></div>';
+            } else {
+                image.src = documentUrl;
+            }
+
+
+            // ------------------------------------------------
+            // ALREADY REVIEWED APPLICATION
+            // ------------------------------------------------
+
+            if (
+                application.status ===
+                "approved"
+            ) {
+
+                approveBtn.style.display =
+                    "none";
+
+                rejectBtn.style.display =
+                    "none";
+
+            } else {
+
+                approveBtn.style.display =
+                    "inline-block";
+
+                rejectBtn.style.display =
+                    "inline-block";
+            }
+
+        }
+
+
+        // ====================================================
+        // CLOSE MODAL
+        // ====================================================
+
+        function closeReviewModal() {
+
+            modalOverlay.classList.remove(
+                "show"
+            );
+
+            selectedApplication =
+                null;
+
+        }
+
+
+        closeModal.addEventListener(
+            "click",
+            closeReviewModal
+        );
+
+
+        cancelBtn.addEventListener(
+            "click",
+            closeReviewModal
+        );
+
+
+        modalOverlay.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target ===
+                    modalOverlay
+                ) {
+
+                    closeReviewModal();
+
+                }
+
+            }
+        );
+
+
+        // ====================================================
+        // REJECT BUTTON
+        // ====================================================
+
+        rejectBtn.addEventListener(
+            "click",
+            async function () {
+
+                if (!selectedApplication) {
+                    return;
+                }
+
+
+                // First click opens reason box
+
+                if (
+                    !rejectionSection.classList.contains(
+                        "show"
+                    )
+                ) {
+
+                    rejectionSection.classList.add(
+                        "show"
+                    );
+
+                    rejectionReason.focus();
+
+                    rejectBtn.textContent =
+                        "Confirm Rejection";
+
+                    return;
+                }
+
+
+                const reason =
+                    rejectionReason.value.trim();
+
+
+                if (!reason) {
+
+                    showToast(
+                        "Please enter a rejection reason.",
+                        "error"
+                    );
+
+                    rejectionReason.focus();
+
+                    return;
+                }
+
+
+                await rejectApplication(
+                    selectedApplication.user_id,
+                    reason
+                );
+
+            }
+        );
+
+
+        // ====================================================
+        // APPROVE BUTTON
+        // ====================================================
+
+        approveBtn.addEventListener(
+            "click",
+            async function () {
+
+                if (!selectedApplication) {
+                    return;
+                }
+
+
+                const confirmed =
+                    window.confirm(
+                        `Approve KYC for ${selectedApplication.name}?`
+                    );
+
+
+                if (!confirmed) {
+                    return;
+                }
+
+
+                await approveApplication(
+                    selectedApplication.user_id
+                );
+
+            }
+        );
+
+
+        // ====================================================
+        // APPROVE APPLICATION
+        // ====================================================
+
+        async function approveApplication(
+            userId
+        ) {
+
+            setActionButtons(
+                true
+            );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_URL}/api/admin/kyc/${userId}/approve`,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    admin_id:
+                                        Number(
+                                            adminId
+                                        )
+                                })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to approve KYC."
+                    );
+                }
+
+
+                showToast(
+                    "KYC approved successfully.",
+                    "success"
+                );
+
+
+                closeReviewModal();
+
+                await loadApplications();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Approve error:",
+                    error
+                );
+
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            } finally {
+
+                setActionButtons(
+                    false
+                );
+            }
+        }
+
+
+        // ====================================================
+        // REJECT APPLICATION
+        // ====================================================
+
+        async function rejectApplication(
+            userId,
+            reason
+        ) {
+
+            setActionButtons(
+                true
+            );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_URL}/api/admin/kyc/${userId}/reject`,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    admin_id:
+                                        Number(
+                                            adminId
+                                        ),
+
+                                    reason:
+                                        reason
+                                })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to reject KYC."
+                    );
+                }
+
+
+                showToast(
+                    "KYC rejected successfully.",
+                    "success"
+                );
+
+
+                closeReviewModal();
+
+                await loadApplications();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Reject error:",
+                    error
+                );
+
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            } finally {
+
+                setActionButtons(
+                    false
+                );
+            }
+        }
+
+
+        // ====================================================
+        // BUTTON STATE
+        // ====================================================
+
+        function setActionButtons(
+            disabled
+        ) {
+
+            approveBtn.disabled =
+                disabled;
+
+            rejectBtn.disabled =
+                disabled;
+
+            cancelBtn.disabled =
+                disabled;
+        }
+
+
+        // ====================================================
+        // FILTERS
+        // ====================================================
+
+        document
+            .querySelectorAll(
+                ".filter-btn"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            document
+                                .querySelectorAll(
+                                    ".filter-btn"
+                                )
+                                .forEach(
+                                    item =>
+                                        item.classList.remove(
+                                            "active"
+                                        )
+                                );
+
+
+                            this.classList.add(
+                                "active"
+                            );
+
+
+                            currentFilter =
+                                this.dataset.filter;
+
+
+                            renderApplications();
+
+                        }
+                    );
+
+                }
+            );
+
+
+        // ====================================================
+        // REFRESH
+        // ====================================================
+
+        refreshBtn.addEventListener(
+            "click",
+            async function () {
+
+                refreshBtn.disabled =
+                    true;
+
+                refreshBtn.textContent =
+                    "Refreshing...";
+
+
+                await loadApplications();
+
+
+                refreshBtn.disabled =
+                    false;
+
+                refreshBtn.textContent =
+                    "↻ Refresh";
+
+            }
+        );
+        logoutBtn.addEventListener(
+            "click",
+            async function () {
+                try { await fetch(API_URL + "/api/admin/logout", { method: "POST" }); } catch (e) {}
+
+                sessionStorage.removeItem(
+                    "campusx_admin_id"
+                );
+
+                sessionStorage.removeItem(
+                    "campusx_admin_name"
+                );
+
+                sessionStorage.removeItem(
+                    "campusx_admin_email"
+                );
+
+                sessionStorage.removeItem(
+                    "campusx_admin_logged_in"
+                );
+
+
+                window.location.replace(
+                    "admin_login.html"
+                );
+
+            }
+        );
+
+
+        // ====================================================
+        // FORMAT DATE
+        // ====================================================
+
+        function formatDate(
+            value
+        ) {
+
+            if (!value) {
+                return "-";
+            }
+
+
+            const date =
+                new Date(
+                    value.replace(
+                        " ",
+                        "T"
+                    )
+                );
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return value;
+
+            }
+
+
+            return date.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        // ====================================================
+        // HTML ESCAPE
+        // ====================================================
+
+        function escapeHtml(
+            value
+        ) {
+
+            return String(
+                value ?? ""
+            )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+        }
+        loadApplications();
+
+    </script>
+
+</body>
+</html>

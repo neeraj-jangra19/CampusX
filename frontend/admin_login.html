@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Login | Campus X</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8faff 0%,
+                    #eef2ff 50%,
+                    #f8faff 100%
+                );
+
+            color: #111827;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 430px;
+
+            background: #ffffff;
+
+            border: 1px solid #e8eaf0;
+
+            border-radius: 28px;
+
+            padding: 42px 34px 34px;
+
+            box-shadow:
+                0 20px 60px rgba(30, 41, 59, 0.10);
+
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -1.8px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #6d5dfc,
+                    #9b59ff,
+                    #ff4f9a
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            background-clip: text;
+
+            margin-bottom: 8px;
+        }
+
+        .admin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 7px 13px;
+
+            border-radius: 50px;
+
+            background: #f3f1ff;
+
+            color: #635bdb;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            margin-bottom: 26px;
+        }
+
+        .admin-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #7166e8;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 750;
+
+            margin-bottom: 8px;
+
+            color: #111827;
+        }
+
+        .subtitle {
+            color: #6b7280;
+
+            font-size: 14px;
+
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            position: relative;
+
+            margin-bottom: 15px;
+        }
+
+        .input-icon {
+            position: absolute;
+
+            left: 18px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 20px;
+            height: 20px;
+
+            color: #9ca3af;
+
+            pointer-events: none;
+        }
+
+        input {
+            width: 100%;
+
+            height: 58px;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            padding:
+                0 18px 0 52px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            color: #111827;
+
+            background: #ffffff;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        input::placeholder {
+            color: #9ca3af;
+        }
+
+        input:focus {
+            border-color: #8b7cf6;
+
+            box-shadow:
+                0 0 0 4px rgba(124, 107, 240, 0.10);
+        }
+
+        .password-toggle {
+            position: absolute;
+
+            right: 16px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            color: #9ca3af;
+
+            padding: 5px;
+        }
+
+        .password-toggle:hover {
+            color: #6366f1;
+        }
+
+        .password-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .login-button {
+            width: 100%;
+
+            height: 58px;
+
+            margin-top: 8px;
+
+            border: none;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #6d5dfc,
+                    #8b5cf6,
+                    #ec4899
+                );
+
+            color: #ffffff;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 25px
+                rgba(124, 92, 246, 0.25);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .login-button:hover {
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 14px 30px
+                rgba(124, 92, 246, 0.32);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .login-button:disabled {
+            opacity: 0.65;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+        .message {
+            display: none;
+
+            margin-top: 16px;
+
+            padding: 12px 14px;
+
+            border-radius: 12px;
+
+            font-size: 13px;
+
+            line-height: 1.4;
+        }
+
+        .message.error {
+            display: block;
+
+            background: #fff1f2;
+
+            color: #be123c;
+
+            border: 1px solid #fecdd3;
+        }
+
+        .message.success {
+            display: block;
+
+            background: #ecfdf5;
+
+            color: #047857;
+
+            border: 1px solid #a7f3d0;
+        }
+
+        .back-link {
+            display: inline-block;
+
+            margin-top: 24px;
+
+            color: #6366f1;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .security-note {
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #f0f0f3;
+
+            color: #9ca3af;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+        }
+
+        @media (max-width: 480px) {
+
+            .login-card {
+                padding:
+                    34px 22px 26px;
+
+                border-radius: 22px;
+            }
+
+            .logo {
+                font-size: 34px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="login-card">
+
+        <div class="logo">
+            Campus X
+        </div>
+
+        <div class="admin-badge">
+            <span class="admin-dot"></span>
+            ADMIN PORTAL
+        </div>
+
+        <h1>
+            Admin Login
+        </h1>
+
+        <p class="subtitle">
+            Sign in to manage student KYC verification
+        </p>
+
+
+        <!-- LOGIN FORM -->
+
+        <form id="adminLoginForm">
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <svg
+                    class="input-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <rect
+                        x="3"
+                        y="5"
+                        width="18"
+                        height="14"
+                        rx="2"
+                    ></rect>
+
+                    <path
+                        d="m3 7 9 6 9-6"
+                    ></path>
+                </svg>
+
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Admin email"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <svg
+                    class="input-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <rect
+                        x="4"
+                        y="10"
+                        width="16"
+                        height="11"
+                        rx="2"
+                    ></rect>
+
+                    <path
+                        d="M8 10V7a4 4 0 0 1 8 0v3"
+                    ></path>
+                </svg>
+
+
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Password"
+                    autocomplete="current-password"
+                    required
+                >
+
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    id="passwordToggle"
+                    aria-label="Show password"
+                >
+
+                    <svg
+                        id="eyeIcon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path
+                            d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"
+                        ></path>
+
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="3"
+                        ></circle>
+                    </svg>
+
+                </button>
+
+            </div>
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                class="login-button"
+                id="adminLoginButton"
+            >
+                Sign In to Admin Panel
+            </button>
+
+        </form>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+
+        <!-- BACK -->
+
+        <a
+            href="login.html"
+            class="back-link"
+        >
+            ← Back to Student Login
+        </a>
+
+
+        <div class="security-note">
+            This portal is restricted to authorized Campus X
+            administrators. Unauthorized access is prohibited.
+        </div>
+
+    </main>
+
+
+    <script src="api.js"></script>
+<script>
+
+        // ====================================================
+        // CONFIGURATION
+        // ====================================================
+
+        const API_URL = window.cx.API;
+        // Send the login cookie with every request and handle expired sessions.
+        const __fetch = window.fetch.bind(window);
+        window.fetch = function (url, options) {
+            options = Object.assign({ credentials: "include" }, options || {});
+            return __fetch(url, options).then(function (res) {
+                if (res.status === 401 && String(url).indexOf("/api/admin/") !== -1 && !String(url).endsWith("/api/admin/login")) {
+                    ["campusx_admin_id", "campusx_admin_name", "campusx_admin_email", "campusx_admin_logged_in"]
+                        .forEach(function (k) { sessionStorage.removeItem(k); });
+                    window.location.replace("admin_login.html");
+                }
+                return res;
+            });
+        };
+
+
+
+        // ====================================================
+        // ELEMENTS
+        // ====================================================
+
+        const form =
+            document.getElementById(
+                "adminLoginForm"
+            );
+
+        const emailInput =
+            document.getElementById(
+                "adminEmail"
+            );
+
+        const passwordInput =
+            document.getElementById(
+                "adminPassword"
+            );
+
+        const loginButton =
+            document.getElementById(
+                "adminLoginButton"
+            );
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+        const passwordToggle =
+            document.getElementById(
+                "passwordToggle"
+            );
+
+
+        // ====================================================
+        // PASSWORD TOGGLE
+        // ====================================================
+
+        passwordToggle.addEventListener(
+            "click",
+            function () {
+
+                const isPassword =
+                    passwordInput.type ===
+                    "password";
+
+
+                passwordInput.type =
+                    isPassword
+                        ? "text"
+                        : "password";
+
+
+                passwordToggle.setAttribute(
+                    "aria-label",
+                    isPassword
+                        ? "Hide password"
+                        : "Show password"
+                );
+            }
+        );
+
+
+        // ====================================================
+        // MESSAGE
+        // ====================================================
+
+        function showMessage(
+            text,
+            type = "error"
+        ) {
+
+            message.textContent =
+                text;
+
+            message.className =
+                `message ${type}`;
+        }
+
+
+        function clearMessage() {
+
+            message.textContent =
+                "";
+
+            message.className =
+                "message";
+        }
+
+
+        // ====================================================
+        // ADMIN LOGIN
+        // ====================================================
+
+        form.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+                clearMessage();
+
+
+                const email =
+                    emailInput.value
+                        .trim()
+                        .toLowerCase();
+
+                const password =
+                    passwordInput.value;
+
+
+                if (!email) {
+
+                    showMessage(
+                        "Please enter the admin email."
+                    );
+
+                    emailInput.focus();
+
+                    return;
+                }
+
+
+                if (!password) {
+
+                    showMessage(
+                        "Please enter the password."
+                    );
+
+                    passwordInput.focus();
+
+                    return;
+                }
+
+
+                loginButton.disabled =
+                    true;
+
+                loginButton.textContent =
+                    "Signing in...";
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            `${API_URL}/api/admin/login`,
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify({
+                                        email:
+                                            email,
+
+                                        password:
+                                            password
+                                    })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok ||
+                        !data.success) {
+
+                        throw new Error(
+                            data.message ||
+                            "Invalid admin credentials."
+                        );
+                    }
+
+
+                    // ========================================
+                    // SAVE ADMIN SESSION
+                    // ========================================
+
+                    sessionStorage.setItem(
+                        "campusx_admin_id",
+                        data.admin_id
+                    );
+
+                    sessionStorage.setItem(
+                        "campusx_admin_name",
+                        data.name
+                    );
+
+                    sessionStorage.setItem(
+                        "campusx_admin_email",
+                        data.email
+                    );
+
+                    sessionStorage.setItem(
+                        "campusx_admin_logged_in",
+                        "true"
+                    );
+
+
+                    showMessage(
+                        "Login successful. Opening admin panel...",
+                        "success"
+                    );
+
+
+                    // ========================================
+                    // REDIRECT
+                    // ========================================
+
+                    setTimeout(
+                        function () {
+
+                            window.location.href =
+                                "admin.html";
+
+                        },
+                        600
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Admin login error:",
+                        error
+                    );
+
+
+                    showMessage(
+                        error.message ||
+                        "Unable to connect to Campus X server."
+                    );
+
+
+                } finally {
+
+                    loginButton.disabled =
+                        false;
+
+                    loginButton.textContent =
+                        "Sign In to Admin Panel";
+                }
+
+            }
+        );
+
+
+        // ====================================================
+        // REDIRECT ALREADY LOGGED-IN ADMIN
+        // ====================================================
+
+        const alreadyLoggedIn =
+            sessionStorage.getItem(
+                "campusx_admin_logged_in"
+            );
+
+
+        if (
+            alreadyLoggedIn ===
+            "true"
+        ) {
+
+            window.location.href =
+                "admin.html";
+        }
+
+    </script>
+
+</body>
+</html>

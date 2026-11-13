@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Campus X — Create Your Profile</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Pacifico&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="profile.css"
+    >
+
+</head>
+
+<body>
+
+<div class="page">
+
+
+    <!-- BACKGROUND -->
+
+    <div class="background"></div>
+
+    <div class="overlay"></div>
+
+
+    <!-- PURPLE DECORATION -->
+
+    <div class="shape shape-one"></div>
+
+    <div class="shape shape-two"></div>
+
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+
+        <!-- LOGO -->
+
+        <header class="brand">
+
+            <img
+                src="CampusX_logo.png"
+                alt="Campus X"
+                class="logo"
+            >
+
+            <div class="tagline">
+                Meet. Connect. Belong.
+            </div>
+
+        </header>
+
+
+
+        <!-- TOP NOTE -->
+
+        <div class="top-note">
+
+            <span>Be</span>
+            <span>yourself.</span>
+            <span>Find</span>
+            <span>your people.</span>
+
+            <span class="heart">
+                ♡
+            </span>
+
+        </div>
+
+
+
+        <!-- PROFILE CARD -->
+
+        <section class="profile-card">
+
+
+            <div class="step">
+                PROFILE SETUP
+            </div>
+
+
+            <h1>
+                Tell us about you
+            </h1>
+
+
+            <p class="subtitle">
+
+                Create your Campus X profile and
+                help people discover the real you.
+
+            </p>
+
+
+
+            <!-- ==========================================
+                 PHOTOS
+            =========================================== -->
+
+            <div class="section-title">
+                Your Photos
+            </div>
+
+
+            <p class="section-description">
+                Add 3 photos that show your personality.
+            </p>
+
+
+            <div class="photo-grid">
+
+
+                <!-- PHOTO 1 -->
+
+                <div
+                    class="photo-box main-photo"
+                    data-index="0"
+                >
+
+                    <input
+                        type="file"
+                        class="photo-input"
+                        accept="image/png,image/jpeg,image/webp"
+                    >
+
+                    <div class="photo-placeholder">
+
+                        <div class="plus">
+                            +
+                        </div>
+
+                        <span>
+                            Main Photo
+                        </span>
+
+                    </div>
+
+                    <img
+                        class="photo-preview"
+                        alt="Photo preview"
+                    >
+
+                </div>
+
+
+
+                <!-- PHOTO 2 -->
+
+                <div
+                    class="photo-box"
+                    data-index="1"
+                >
+
+                    <input
+                        type="file"
+                        class="photo-input"
+                        accept="image/png,image/jpeg,image/webp"
+                    >
+
+                    <div class="photo-placeholder">
+
+                        <div class="plus">
+                            +
+                        </div>
+
+                        <span>
+                            Add Photo
+                        </span>
+
+                    </div>
+
+                    <img
+                        class="photo-preview"
+                        alt="Photo preview"
+                    >
+
+                </div>
+
+
+
+                <!-- PHOTO 3 -->
+
+                <div
+                    class="photo-box"
+                    data-index="2"
+                >
+
+                    <input
+                        type="file"
+                        class="photo-input"
+                        accept="image/png,image/jpeg,image/webp"
+                    >
+
+                    <div class="photo-placeholder">
+
+                        <div class="plus">
+                            +
+                        </div>
+
+                        <span>
+                            Add Photo
+                        </span>
+
+                    </div>
+
+                    <img
+                        class="photo-preview"
+                        alt="Photo preview"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ==========================================
+                 BASIC DETAILS
+            =========================================== -->
+
+            <div class="section-title">
+                Basic Details
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <!-- NICKNAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Nickname
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nickname"
+                        placeholder="What should people call you?"
+                        maxlength="30"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- AGE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Age
+                    </label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        placeholder="Your age"
+                        min="18"
+                        max="100"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- GENDER -->
+
+                <div class="form-group">
+
+                    <label>
+                        Gender
+                    </label>
+
+                    <select id="gender" required>
+
+                        <option value="">
+                            Select gender
+                        </option>
+
+                        <option value="male">
+                            Male
+                        </option>
+
+                        <option value="female">
+                            Female
+                        </option>
+
+                        <option value="non-binary">
+                            Non-binary
+                        </option>
+
+                        <option value="prefer-not">
+                            Prefer not to say
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- COURSE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Branch / Course
+                    </label>
+
+                    <input
+                        type="text"
+                        id="course"
+                        placeholder="e.g. CSE, BBA, B.Tech"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Year
+                    </label>
+
+                    <select id="year" required>
+
+                        <option value="">
+                            Select year
+                        </option>
+
+                        <option value="1">
+                            1st Year
+                        </option>
+
+                        <option value="2">
+                            2nd Year
+                        </option>
+
+                        <option value="3">
+                            3rd Year
+                        </option>
+
+                        <option value="4">
+                            4th Year
+                        </option>
+
+                        <option value="masters">
+                            Master's
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Height
+                    </label>
+
+                    <input
+                        type="text"
+                        id="height"
+                        placeholder="e.g. 5'10&quot;"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Hometown
+                    </label>
+
+                    <input
+                        type="text"
+                        id="hometown"
+                        placeholder="Where are you from?"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Living on campus?
+                    </label>
+
+                    <select id="hosteller" required>
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option value="hosteller">
+                            Hosteller
+                        </option>
+
+                        <option value="day-scholar">
+                            Day Scholar
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Religion
+                    </label>
+
+                    <select id="religion">
+
+                        <option value="">
+                            Select religion
+                        </option>
+
+                        <option value="hindu">
+                            Hindu
+                        </option>
+
+                        <option value="muslim">
+                            Muslim
+                        </option>
+
+                        <option value="christian">
+                            Christian
+                        </option>
+
+                        <option value="sikh">
+                            Sikh
+                        </option>
+
+                        <option value="buddhist">
+                            Buddhist
+                        </option>
+
+                        <option value="jain">
+                            Jain
+                        </option>
+
+                        <option value="other">
+                            Other
+                        </option>
+
+                        <option value="prefer-not">
+                            Prefer not to say
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="section-title">
+                Interests
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Hobbies
+                </label>
+
+                <input
+                    type="text"
+                    id="hobbies"
+                    placeholder="e.g. Music, Gym, Gaming, Photography"
+                    maxlength="150"
+                >
+
+                <div class="input-hint">
+                    Separate multiple hobbies with commas.
+                </div>
+
+            </div>
+
+            <div class="section-title">
+                About You
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Bio
+                </label>
+
+                <textarea
+                    id="bio"
+                    placeholder="Tell people a little about yourself..."
+                    maxlength="300"
+                ></textarea>
+
+
+                <div class="character-count">
+                    <span id="bioCount">0</span>/300
+                </div>
+
+            </div>
+
+            <!-- ==========================================
+     PERSONAL QUESTIONS
+=========================================== -->
+
+<div class="section-title">
+    Get to know you
+</div>
+
+<p class="section-description">
+    Answer these questions in your own words.
+    Your answers will help others start a conversation.
+</p>
+
+
+<!-- QUESTION 1 -->
+
+<div class="question-group">
+
+    <label>
+        What's something you're always up for?
+    </label>
+
+    <textarea
+        id="question1"
+        class="question-answer"
+        placeholder="Tell us something you enjoy..."
+        maxlength="180"
+        required
+    ></textarea>
+
+    <div class="character-count">
+        <span id="question1Count">0</span>/180
+    </div>
+
+</div>
+
+
+<!-- QUESTION 2 -->
+
+<div class="question-group">
+
+    <label>
+        What's your perfect college day?
+    </label>
+
+    <textarea
+        id="question2"
+        class="question-answer"
+        placeholder="Describe your ideal day on campus..."
+        maxlength="180"
+        required
+    ></textarea>
+
+    <div class="character-count">
+        <span id="question2Count">0</span>/180
+    </div>
+
+</div>
+
+
+<!-- QUESTION 3 -->
+
+<div class="question-group">
+
+    <label>
+        What's something you want to try this year?
+    </label>
+
+    <textarea
+        id="question3"
+        class="question-answer"
+        placeholder="Something new you'd love to experience..."
+        maxlength="180"
+        required
+    ></textarea>
+
+    <div class="character-count">
+        <span id="question3Count">0</span>/180
+    </div>
+
+</div>
+
+            <button
+                type="button"
+                id="submitProfile"
+                class="submit-button"
+            >
+
+                <span>
+                    Create My Profile
+                </span>
+
+                <span class="arrow">
+                    →
+                </span>
+
+            </button>
+
+
+            <p class="submit-note">
+
+                You can edit these details later.
+
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+<script src="api.js"></script>
+<script src="profile.js"></script>
+
+
+</body>
+
+</html>

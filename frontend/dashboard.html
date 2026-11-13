@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Campus X — Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="dashboard.css"
+    >
+<link rel="stylesheet" href="chat-ui.css">
+
+</head>
+
+<body>
+
+    <main class="app">
+
+        <section
+            id="homePage"
+            class="page-section active"
+        >
+
+            <header class="topbar">
+
+                <div class="brand">
+
+                    <img
+                        src="CampusX_logo.png"
+                        alt="Campus X"
+                    >
+                    <div class="tagline">
+                Meet. Connect. Belong.
+            </div>
+                </div>
+
+                <button
+                    class="icon-btn"
+                    id="menuBtn"
+                    aria-label="Menu"
+                >
+                    ⋯
+                </button>
+
+            </header>
+
+            <div class="home-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        DISCOVER
+                    </span>
+
+                    <h1>
+                        Meet your campus
+                    </h1>
+
+                </div>
+
+
+                <span
+                    class="counter"
+                    id="profileCounter"
+                >
+                    1 / 6
+                </span>
+
+            </div>
+
+            <div id="profileContainer"></div>
+
+            <div
+                class="empty-state hidden"
+                id="homeEmpty"
+            >
+
+                <div class="empty-icon">
+                    ✓
+                </div>
+
+                <h2>
+                    You're all caught up
+                </h2>
+
+                <p>
+                    There are no more profiles to show right now.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section
+            id="chatPage"
+            class="page-section"
+        >
+
+            <header class="section-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        MESSAGES
+                    </span>
+
+                    <h1>
+                        Your Matches
+                    </h1>
+
+                </div>
+
+
+                <span
+                    class="match-count"
+                    id="matchCount"
+                >
+                    0
+                </span>
+
+            </header>
+
+
+
+            <div class="chat-info">
+
+                <span>
+                    💜
+                </span>
+
+                <p>
+                    You can chat only when
+                    <strong>
+                        both users like each other.
+                    </strong>
+                </p>
+
+            </div>
+
+
+
+            <div
+                id="chatList"
+                class="chat-list"
+            ></div>
+
+
+
+            <!-- CHAT EMPTY -->
+
+            <div
+                class="empty-state chat-empty"
+                id="chatEmpty"
+            >
+
+                <div class="empty-icon">
+                    💬
+                </div>
+
+                <h2>
+                    No matches yet
+                </h2>
+
+                <p>
+                    Like people on Home. When they like
+                    you back, you'll be able to chat.
+                </p>
+
+
+                <button
+                    class="primary-small"
+                    data-go="homePage"
+                >
+                    Discover people
+                </button>
+
+            </div>
+
+        </section>
+
+        <section
+            id="profilePage"
+            class="page-section"
+        >
+
+            <header class="section-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        MY PROFILE
+                    </span>
+
+                    <h1>
+                        Profile
+                    </h1>
+
+                </div>
+
+
+                <button
+                    class="outline-small"
+                    id="editProfileBtn"
+                >
+                    Edit
+                </button>
+
+            </header>
+
+
+
+            <!-- MY PROFILE -->
+
+            <div class="my-profile-card">
+
+                <div class="my-avatar">
+                    NJ
+                </div>
+
+                <h2 id="myName">
+                    Neeraj, 21
+                </h2>
+
+                <p id="myCourse">
+                    B.Tech CSE — AI & ML • 4th Year
+                </p>
+
+            </div>
+
+
+
+            <!-- DETAILS -->
+
+            <div class="glass details">
+
+                <div class="chip">
+
+                    <span class="chip-icon">
+                        ⚧
+                    </span>
+
+                    <span>
+
+                        <small>
+                            Gender
+                        </small>
+
+                        <strong>
+                            Male
+                        </strong>
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="chip">
+
+                    <span class="chip-icon">
+                        ↕
+                    </span>
+
+                    <span>
+
+                        <small>
+                            Height
+                        </small>
+
+                        <strong>
+                            5'10"
+                        </strong>
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="chip">
+
+                    <span class="chip-icon">
+                        🎓
+                    </span>
+
+                    <span>
+
+                        <small>
+                            Branch / Course
+                        </small>
+
+                        <strong>
+                            CSE — AI & ML
+                        </strong>
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="chip">
+
+                    <span class="chip-icon">
+                        📅
+                    </span>
+
+                    <span>
+
+                        <small>
+                            Year
+                        </small>
+
+                        <strong>
+                            4th Year
+                        </strong>
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="chip">
+
+                    <span class="chip-icon">
+                        🏠
+                    </span>
+
+                    <span>
+
+                        <small>
+                            Residence
+                        </small>
+
+                        <strong>
+                            Hosteller
+                        </strong>
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="chip">
+
+                    <span class="chip-icon">
+                        📍
+                    </span>
+
+                    <span>
+
+                        <small>
+                            Hometown
+                        </small>
+
+                        <strong>
+                            Kaithal, Haryana
+                        </strong>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- INTERESTS -->
+
+            <div class="glass">
+
+                <div class="section-title">
+                    Interests
+                </div>
+
+
+                <div class="interest-chips">
+
+                    <span>
+                        🏏 Cricket
+                    </span>
+
+                    <span>
+                        💻 Technology
+                    </span>
+
+                    <span>
+                        🎵 Music
+                    </span>
+
+                    <span>
+                        🎬 Movies
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ABOUT -->
+
+            <div class="glass">
+
+                <div class="section-title">
+                    About me
+                </div>
+
+
+                <p class="bio">
+
+                    Building Campus X, learning backend
+                    development and AI, and always up for
+                    good conversations and meeting
+                    interesting people on campus.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- LOGOUT -->
+
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+            >
+                Log out
+            </button>
+
+        </section>
+        <section
+            id="conversationPage"
+            class="page-section conversation-page"
+        >
+
+            <header
+                class="conversation-header"
+            >
+
+                <button
+                    class="back-btn"
+                    id="backToChat"
+                    aria-label="Back"
+                >
+                    ‹
+                </button>
+
+
+                <div class="conversation-user">
+
+                    <div
+                        class="small-avatar"
+                        id="conversationAvatar"
+                    >
+                        A
+                    </div>
+
+
+                    <div>
+
+                        <strong
+                            id="conversationName"
+                        >
+                            Aarav
+                        </strong>
+
+                        <span>
+                            Matched on Campus X
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- MESSAGES -->
+
+            <div
+                id="messages"
+                class="messages"
+            ></div>
+
+
+
+            <!-- MESSAGE FORM -->
+
+            <form
+                id="messageForm"
+                class="message-form"
+            >
+
+                <input
+                    id="messageInput"
+                    type="text"
+                    placeholder="Write a message..."
+                    autocomplete="off"
+                >
+
+
+                <button
+                    type="submit"
+                    aria-label="Send message"
+                >
+                    ➤
+                </button>
+
+            </form>
+
+        </section>
+
+        <nav
+            class="bottom-nav"
+            id="bottomNav"
+        >
+
+            <!-- HOME -->
+
+            <button
+                class="nav-btn active"
+                data-page="homePage"
+            >
+
+                <span>
+                    ⌂
+                </span>
+
+                <small>
+                    Home
+                </small>
+
+            </button>
+
+
+
+            <!-- CHAT -->
+
+            <button
+                class="nav-btn"
+                data-page="chatPage"
+            >
+
+                <span>
+                    ♡
+                </span>
+
+                <small>
+                    Chat
+                </small>
+
+
+                <b
+                    id="navBadge"
+                    class="nav-badge hidden"
+                >
+                    0
+                </b>
+
+            </button>
+
+
+
+            <!-- PROFILE -->
+
+            <button
+                class="nav-btn"
+                data-page="profilePage"
+            >
+
+                <span>
+                    ◯
+                </span>
+
+                <small>
+                    Profile
+                </small>
+
+            </button>
+
+        </nav>
+
+
+    </main>
+
+    <script src="api.js"></script>
+<script src="chat-ui.js"></script>
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>

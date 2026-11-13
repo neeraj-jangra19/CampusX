@@ -1,0 +1,1579 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+
+    width: 100%;
+    height: 100%;
+
+    font-family: "Inter", sans-serif;
+
+}
+
+
+body {
+
+    background: #121219;
+
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    --purple: #963cff;
+
+    --purple-light: #b35cff;
+
+    --white: #ffffff;
+
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.login-page {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100vh;
+
+    height: 100svh;
+
+    min-height: 620px;
+
+    overflow: hidden;
+
+    color: white;
+
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background {
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        url("campus.png");
+
+    background-size: cover;
+
+    background-position:
+        center center;
+
+    transform:
+        scale(1.04);
+
+    filter:
+        blur(5px);
+
+}
+
+
+/* =========================================================
+   DARK OVERLAY
+========================================================= */
+
+.overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(30, 40, 77, 0.63),
+            rgba(10, 10, 16, 0.76)
+        );
+
+}
+
+
+/* =========================================================
+   BOTTOM PURPLE SHAPES
+========================================================= */
+
+.shape {
+
+    position: absolute;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+}
+
+
+.shape-one {
+
+    width: 260px;
+
+    height: 150px;
+
+    right: -80px;
+
+    bottom: -80px;
+
+    border-radius:
+        70% 30% 0 0;
+
+    background:
+        rgba(170, 105, 255, 0.40);
+
+    transform:
+        rotate(-10deg);
+
+}
+
+
+.shape-two {
+
+    width: 285px;
+
+    height: 125px;
+
+    right: 50px;
+
+    bottom: -82px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(138, 68, 255, 0.30);
+
+    transform:
+        rotate(-18deg);
+
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.login-container {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: 390px;
+
+    max-width:
+        calc(100% - 40px);
+
+    height: 100%;
+
+    margin: 0 auto;
+
+    padding-top: 28px;
+
+    padding-bottom: 25px;
+
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+
+    position: relative;
+
+}
+
+
+/* =========================================================
+   ACTUAL LOGO IMAGE
+========================================================= */
+
+.campusx-logo {
+
+    display: block;
+
+    width: 225px;
+
+    max-width: 100%;
+
+    height: auto;
+
+    object-fit: contain;
+
+}
+
+
+/* =========================================================
+   TAGLINE
+========================================================= */
+
+.tagline {
+
+    margin-top: 5px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color:
+        rgba(6, 6, 6, 0.93);
+
+}
+
+
+/* =========================================================
+   TOP RIGHT NOTE
+========================================================= */
+
+.top-note {
+
+    position: absolute;
+
+    top: 43px;
+
+    right: -5px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    font-family:
+        "Pacifico",
+        cursive;
+
+    font-size: 14px;
+
+    line-height: 1.28;
+
+    color: white;
+
+    transform:
+        rotate(-7deg);
+
+}
+
+
+.top-note span {
+
+    display: block;
+
+}
+
+
+.top-heart {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 30px;
+
+    margin-left: 18px;
+
+    margin-top: 2px;
+
+}
+
+
+/* =========================================================
+   LOGIN CONTENT
+========================================================= */
+
+.login-content {
+
+    width: 100%;
+
+    margin-top: 43px;
+
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.login-content h1 {
+
+    font-size: 30px;
+
+    line-height: 1.18;
+
+    font-weight: 800;
+
+    letter-spacing: -0.7px;
+
+    color: white;
+
+}
+
+
+/* =========================================================
+   PURPLE HEADING LINE
+========================================================= */
+
+.heading-line {
+
+    width: 87px;
+
+    height: 6px;
+
+    margin-top: 10px;
+
+    background:
+        var(--purple);
+
+    border-radius: 100%;
+
+    transform:
+        rotate(-4deg);
+
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.description {
+
+    margin-top: 18px;
+
+    margin-bottom: 21px;
+
+    font-size: 13px;
+
+    line-height: 1.45;
+
+    font-weight: 500;
+
+    color:
+        rgba(255,255,255,0.92);
+
+}
+
+
+/* =========================================================
+   INPUT GROUP
+========================================================= */
+
+.input-group {
+
+    width: 100%;
+
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 13px;
+
+    margin-bottom: 11px;
+
+    border:
+        1.5px solid
+        rgba(255,255,255,0.60);
+
+    border-radius: 15px;
+
+    background:
+        rgba(30,30,38,0.43);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.input-group:focus-within {
+
+    border-color:
+        var(--purple-light);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(150,60,255,0.12);
+
+}
+
+
+/* =========================================================
+   INPUT ICON
+========================================================= */
+
+.input-icon {
+
+    width: 28px;
+
+    min-width: 28px;
+
+    margin-right: 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.input-icon svg {
+
+    width: 22px;
+
+    height: 22px;
+
+    fill: none;
+
+    stroke: white;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.input-group input {
+
+    flex: 1;
+
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+}
+
+
+.input-group input::placeholder {
+
+    color:
+        rgba(255,255,255,0.92);
+
+}
+
+
+/* =========================================================
+   PASSWORD TOGGLE
+========================================================= */
+
+.password-toggle {
+
+    width: 30px;
+
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+}
+
+
+.password-toggle svg {
+
+    width: 21px;
+
+    height: 21px;
+
+    fill: none;
+
+    stroke: white;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+}
+
+
+/* =========================================================
+   LOGIN OPTIONS
+========================================================= */
+
+.login-options {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.remember {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.remember input {
+
+    position: absolute;
+
+    opacity: 0;
+
+}
+
+
+/* CUSTOM CHECKBOX */
+
+.custom-checkbox {
+
+    width: 19px;
+
+    height: 19px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        var(--purple);
+
+    border-radius: 4px;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.remember input:not(:checked)
++ .custom-checkbox {
+
+    background: transparent;
+
+    border:
+        1.5px solid
+        rgba(255,255,255,0.75);
+
+}
+
+
+/* =========================================================
+   FORGOT PASSWORD
+========================================================= */
+
+.forgot-password {
+
+    color:
+        var(--purple-light);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+}
+
+
+.forgot-password:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.login-button {
+
+    width: 100%;
+
+    height: 47px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #713ac1,
+            #7834dc
+        );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px
+        rgba(95,35,180,0.32);
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.login-button:hover {
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(95,35,180,0.45);
+
+}
+
+
+.login-button:disabled {
+
+    opacity: 0.7;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+.arrow {
+
+    font-size: 22px;
+
+    line-height: 1;
+
+}
+
+
+/* =========================================================
+   OR DIVIDER
+========================================================= */
+
+.or-divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin: 20px 0;
+
+}
+
+
+.or-divider span {
+
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        rgba(255,255,255,0.72);
+
+}
+
+
+.or-divider strong {
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    color: white;
+
+}
+
+
+/* =========================================================
+   GOOGLE BUTTON
+========================================================= */
+
+.google-button {
+
+    width: 100%;
+
+    height: 47px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 11px;
+
+    border:
+        1.5px solid
+        rgba(255,255,255,0.62);
+
+    border-radius: 25px;
+
+    background:
+        rgba(30,30,38,0.20);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.google-button:hover {
+
+    background:
+        rgba(255,255,255,0.10);
+
+    border-color:
+        white;
+
+}
+
+
+/* =========================================================
+   GOOGLE ICON
+========================================================= */
+
+.google-icon {
+
+    width: 22px;
+
+    height: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #4285F4;
+
+}
+
+
+/* =========================================================
+   SIGN UP
+========================================================= */
+
+.signup-text {
+
+    margin-top: 21px;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    color:
+        rgba(255,255,255,0.92);
+
+}
+
+
+.signup-text a {
+
+    color:
+        var(--purple-light);
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    margin-left: 5px;
+
+}
+
+
+.signup-text a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =========================================================
+   BOTTOM HANDWRITTEN NOTE
+========================================================= */
+
+.bottom-note {
+
+    position: absolute;
+
+    left: -14px;
+
+    bottom: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-family:
+        "Pacifico",
+        cursive;
+
+    font-size: 12px;
+
+    line-height: 1.15;
+
+    color:
+        #a84cff;
+
+    transform:
+        rotate(-6deg);
+
+}
+
+
+.bottom-note span {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 27px;
+
+}
+
+
+/* =========================================================
+   SMALL LAPTOP / RESIZED BROWSER
+========================================================= */
+
+@media
+(min-width: 601px)
+and
+(max-height: 750px) {
+
+
+    .login-container {
+
+        width: 390px;
+
+        padding-top: 23px;
+
+    }
+
+
+    .campusx-logo {
+
+        width: 185px;
+
+    }
+
+
+    .tagline {
+
+        font-size: 11px;
+
+        margin-top: 4px;
+
+    }
+
+
+    .top-note {
+
+        top: 39px;
+
+        font-size: 13px;
+
+    }
+
+
+    .login-content {
+
+        margin-top: 39px;
+
+    }
+
+
+    .login-content h1 {
+
+        font-size: 28px;
+
+    }
+
+
+    .heading-line {
+
+        width: 83px;
+
+        height: 5px;
+
+    }
+
+
+    .description {
+
+        font-size: 12px;
+
+        margin-top: 15px;
+
+        margin-bottom: 18px;
+
+    }
+
+
+    .input-group {
+
+        height: 49px;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .input-group input {
+
+        font-size: 12px;
+
+    }
+
+
+    .login-options {
+
+        margin-top: 9px;
+
+        margin-bottom: 18px;
+
+    }
+
+
+    .login-button {
+
+        height: 44px;
+
+        font-size: 13px;
+
+    }
+
+
+    .google-button {
+
+        height: 44px;
+
+        font-size: 11px;
+
+    }
+
+
+    .or-divider {
+
+        margin: 18px 0;
+
+    }
+
+
+    .signup-text {
+
+        margin-top: 18px;
+
+        font-size: 10px;
+
+    }
+
+
+    .bottom-note {
+
+        bottom: 10px;
+
+        font-size: 10px;
+
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(max-width: 900px)
+and
+(min-width: 601px) {
+
+
+    .login-container {
+
+        width: 390px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+
+    html,
+    body {
+
+        height: auto;
+
+        overflow-x: hidden;
+
+        overflow-y: auto;
+
+    }
+
+
+    .login-page {
+
+        height: auto;
+
+        min-height: 100svh;
+
+        overflow: hidden;
+
+    }
+
+
+    .background {
+
+        background-position:
+            58% center;
+
+    }
+
+
+    .overlay {
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(28,35,75,0.65),
+                rgba(8,8,13,0.77)
+            );
+
+    }
+
+
+    .login-container {
+
+        width: 88%;
+
+        max-width: 430px;
+
+        min-height: 100svh;
+
+        height: auto;
+
+        padding-top: 30px;
+
+        padding-bottom: 100px;
+
+    }
+
+
+    /* LOGO */
+
+    .campusx-logo {
+
+        width: 235px;
+
+        max-width: 70vw;
+
+    }
+
+
+    .tagline {
+
+        font-size: 15px;
+
+        margin-top: 8px;
+
+    }
+
+
+    /* TOP NOTE */
+
+    .top-note {
+
+        top: 70px;
+
+        right: 0;
+
+        font-size: 15px;
+
+    }
+
+
+    .top-heart {
+
+        font-size: 32px;
+
+    }
+
+
+    /* CONTENT */
+
+    .login-content {
+
+        margin-top: 58px;
+
+    }
+
+
+    .login-content h1 {
+
+        font-size:
+            clamp(30px, 8.5vw, 38px);
+
+        line-height: 1.18;
+
+    }
+
+
+    .heading-line {
+
+        width: 95px;
+
+        height: 6px;
+
+        margin-top: 13px;
+
+    }
+
+
+    .description {
+
+        font-size: 17px;
+
+        margin-top: 25px;
+
+        margin-bottom: 30px;
+
+    }
+
+
+    /* INPUT */
+
+    .input-group {
+
+        height: 64px;
+
+        border-radius: 18px;
+
+        padding: 0 15px;
+
+        margin-bottom: 15px;
+
+    }
+
+
+    .input-icon {
+
+        width: 30px;
+
+        min-width: 30px;
+
+        margin-right: 12px;
+
+    }
+
+
+    .input-icon svg {
+
+        width: 27px;
+
+        height: 27px;
+
+    }
+
+
+    .input-group input {
+
+        font-size: 16px;
+
+    }
+
+
+    .password-toggle {
+
+        width: 35px;
+
+        height: 35px;
+
+    }
+
+
+    .password-toggle svg {
+
+        width: 26px;
+
+        height: 26px;
+
+    }
+
+
+    /* OPTIONS */
+
+    .login-options {
+
+        margin-top: 18px;
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .remember {
+
+        font-size: 15px;
+
+        gap: 9px;
+
+    }
+
+
+    .custom-checkbox {
+
+        width: 29px;
+
+        height: 29px;
+
+        font-size: 19px;
+
+    }
+
+
+    .forgot-password {
+
+        font-size: 15px;
+
+    }
+
+
+    /* LOGIN */
+
+    .login-button {
+
+        height: 65px;
+
+        font-size: 20px;
+
+    }
+
+
+    .arrow {
+
+        font-size: 29px;
+
+    }
+
+
+    /* OR */
+
+    .or-divider {
+
+        gap: 18px;
+
+        margin: 31px 0;
+
+    }
+
+
+    .or-divider strong {
+
+        font-size: 16px;
+
+    }
+
+
+    /* GOOGLE */
+
+    .google-button {
+
+        height: 62px;
+
+        border-radius: 32px;
+
+        font-size: 16px;
+
+    }
+
+
+    .google-icon {
+
+        width: 25px;
+
+        height: 25px;
+
+        font-size: 23px;
+
+    }
+
+
+    /* SIGN UP */
+
+    .signup-text {
+
+        margin-top: 27px;
+
+        font-size: 15px;
+
+    }
+
+
+    /* BOTTOM */
+
+    .bottom-note {
+
+        left: 0;
+
+        bottom: 22px;
+
+        font-size: 16px;
+
+    }
+
+
+    .bottom-note span {
+
+        font-size: 34px;
+
+    }
+
+
+    /* SHAPES */
+
+    .shape-one {
+
+        width: 200px;
+
+        height: 130px;
+
+        right: -70px;
+
+        bottom: -70px;
+
+    }
+
+
+    .shape-two {
+
+        width: 220px;
+
+        height: 110px;
+
+        right: 35px;
+
+        bottom: -70px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media (max-width: 380px) {
+
+
+    .login-container {
+
+        width: 90%;
+
+        padding-top: 25px;
+
+    }
+
+
+    .campusx-logo {
+
+        width: 215px;
+
+    }
+
+
+    .tagline {
+
+        font-size: 13px;
+
+    }
+
+
+    .top-note {
+
+        font-size: 13px;
+
+        top: 65px;
+
+    }
+
+
+    .login-content {
+
+        margin-top: 50px;
+
+    }
+
+
+    .login-content h1 {
+
+        font-size: 29px;
+
+    }
+
+
+    .description {
+
+        font-size: 15px;
+
+    }
+
+
+    .input-group {
+
+        height: 60px;
+
+    }
+
+
+    .remember {
+
+        font-size: 13px;
+
+    }
+
+
+    .forgot-password {
+
+        font-size: 13px;
+
+    }
+
+
+    .google-button {
+
+        height: 58px;
+
+        font-size: 14px;
+
+    }
+
+
+    .signup-text {
+
+        font-size: 14px;
+
+    }
+
+}

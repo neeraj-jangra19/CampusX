@@ -1,0 +1,10 @@
+{
+    "liveServer.settings.ignoreFiles": [
+        "backend/**",
+        ".vscode/**",
+        "**/*.db",
+        "**/*.db-journal",
+        "**/*.db-wal",
+        "**/uploads/**"
+    ]
+}

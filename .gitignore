@@ -1,0 +1,6 @@
+backend/.env
+backend/.secret_key
+backend/*.db
+backend/uploads/
+__pycache__/
+venv/
