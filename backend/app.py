@@ -162,9 +162,9 @@ def init_db():
         c.executescript(SCHEMA)
         ensure_columns(c)
         c.execute("CREATE INDEX IF NOT EXISTS idx_messages_unread ON messages(receiver_id, sender_id, read_at)")
-        email = os.getenv("ADMIN_EMAIL", "admin@campusx.com").strip().lower()
+        email = os.getenv("ADMIN_EMAIL", "admin@campusx.local").strip().lower()
         name = os.getenv("ADMIN_NAME", "CampusX Administrator")
-        pw = os.getenv("ADMIN_PASSWORD", "campusX@2026)
+        pw = os.getenv("ADMIN_PASSWORD", "campusX@2026")
         row = c.execute("SELECT id, password_hash FROM admins WHERE email=?", (email,)).fetchone()
         if not row:
             c.execute("INSERT INTO admins(name,email,password_hash) VALUES(?,?,?)",
